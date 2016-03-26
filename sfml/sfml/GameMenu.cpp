@@ -7,6 +7,32 @@ GameMenu::GameMenu()
 {
 }
 
+int GameMenu::enterMenu(sf::RenderWindow& window)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		bool inmenu = true;
+		while (inmenu == true)
+		{
+			// escape key is pressed: open game menu
+			int gamemenureturn = RunMenu(window);
+			if (gamemenureturn == 1)
+			{
+				return 99;
+			}
+			if (gamemenureturn == 2)
+			{
+				return 2;
+			}
+			if (gamemenureturn == 3)
+			{
+				inmenu = false;
+			}
+		}
+	}
+	return 1;
+}
+
 int GameMenu::RunMenu(sf::RenderWindow& window)
 {
 	std::cout << "\nhas entered game menu class";

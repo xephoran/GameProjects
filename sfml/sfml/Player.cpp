@@ -12,11 +12,7 @@ Player::Player()
 
 int Player::handlePlayer(sf::RenderWindow& window, int various)
 {
-	static int playerPositionX = 0;
-	static int playerPositionY = 0;
 	static int playerMade = 1;
-	int playerMoveX = NULL;
-	int playerMoveY = NULL;
 
 	if (playerMade == 1)
 	{

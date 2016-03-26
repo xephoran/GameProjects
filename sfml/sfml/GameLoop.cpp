@@ -18,71 +18,29 @@ int GameLoop::RunGame(int screensize)
 	bool inmenu = false;
 	int playerState;
 	GameMenu gameMenu;
-	RenderEngine renderEngine;
 	Player player;
-	
-	std::string pressedkey = "0";
-	
-	window.create(sf::VideoMode(1280, 720), "My window", sf::Style::Fullscreen);
+	int menuReturn = NULL;
 
-	int gamemenureturn = 0;
+	//sets up the window (needs to happen ONCE)
+	window.create(sf::VideoMode(1280, 720), "My window", sf::Style::Fullscreen);
 
 	while (hasquit == false)
 	{
 		std::cout << "has entered the while loop";
 		//do whatever the game needs to do
-		
-		sf::Event event;
+
 		window.clear();
-		// while there are pending events...
-		while (window.pollEvent(event))if (event.type == sf::Event::KeyPressed)
-		{
-			{
-				if (event.key.code == sf::Keyboard::Escape)
-				{
-					pressedkey = "Escape";
-				}
-			}
-		}
 
 		//player class operations go here
 		playerState = player.handlePlayer(window, 0);
 
-
-		if (pressedkey == "Escape")
-		{
-			pressedkey = "0";
-			bool inmenu = true;
-			while (inmenu == true)
+		//this opens the game menu if the button is pressed
+			menuReturn = gameMenu.enterMenu(window);
+			if (menuReturn == 99 || menuReturn == 2)
 			{
-				// escape key is pressed: open game menu
-				std::cout << "\nentered game menu loop\n";
-
-				while (window.pollEvent(event))if (event.type == sf::Event::KeyPressed)
-				{
-						if (event.key.code == sf::Keyboard::Escape)
-						{
-							pressedkey = "Escape";
-						}
-				}
-
-				gamemenureturn = gameMenu.RunMenu(window);
-				if (gamemenureturn == 1)
-				{
-					return 99;
-				}
-				if (gamemenureturn == 2)
-				{
-					return 2;
-				}
-				if (gamemenureturn == 3 || pressedkey == "Escape")
-				{
-					inmenu = false;
-					pressedkey = "0";
-				}
-				std::cout << "\nentered last line of gamemenu loop\n";
+				return menuReturn;
 			}
-		}
+
 		window.display();
 	}
 	return 99;
