@@ -60,12 +60,10 @@ int GameLoop::RunGame(int screensize)
 
 				while (window.pollEvent(event))if (event.type == sf::Event::KeyPressed)
 				{
-					{
 						if (event.key.code == sf::Keyboard::Escape)
 						{
 							pressedkey = "Escape";
 						}
-					}
 				}
 
 				gamemenureturn = gameMenu.RunMenu(window);
