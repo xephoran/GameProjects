@@ -7,6 +7,8 @@ OptionsMenu::OptionsMenu()
 
 int OptionsMenu::runOptionsMenu(sf::RenderWindow& window, int screensizeX, int screenSizeY, int clockTime, int minClockTime)
 {
+	OptionsClockTime = clockTime;
+	optionsMinClockTime = minClockTime;
 	std::cout << "\nhas entered game menu class";
 	//sets up rectangles for buttons
 	// resume button has following Left:86, Top:58, Width:50, Height, 50
@@ -25,32 +27,20 @@ int OptionsMenu::runOptionsMenu(sf::RenderWindow& window, int screensizeX, int s
 	}
 	//creates difficulty texture here
 	sf::Texture difficultyTexture;
-		if (clockTime == 6)
+		if (OptionsClockTime == 6)
 		{
-			if (!menutexture.loadFromFile("images/easy.png"))
-			{
-
-			}
+			difficultyTexture.loadFromFile("images/easy.png");
 		}
 
-		if (clockTime == 5)
+		if (OptionsClockTime == 5)
 		{
-			if (!menutexture.loadFromFile("images/medium.png"))
-			{
-
-			}
+			difficultyTexture.loadFromFile("images/medium.png");
 		}
 
-		if (clockTime == 4.5)
+		if (OptionsClockTime == 4.5)
 		{
-			if (!menutexture.loadFromFile("images/hard.png"))
-			{
-
-			}
+			difficultyTexture.loadFromFile("images/hard.png");
 		}
-
-
-
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
@@ -60,28 +50,28 @@ int OptionsMenu::runOptionsMenu(sf::RenderWindow& window, int screensizeX, int s
 		}
 		if (difficultyDown.contains(sf::Mouse::getPosition(window)) == true)
 		{
-			if (clockTime == 5)
+			if (OptionsClockTime == 5)
 			{
-				clockTime = 6;
-				minClockTime = 2.9;
+				OptionsClockTime = 6;
+				optionsMinClockTime = 2.9;
 			}
-			if (clockTime == 4.5)
+			if (OptionsClockTime == 4.5)
 			{
-				clockTime = 5;
-				minClockTime = 2.6;
+				OptionsClockTime = 5;
+				optionsMinClockTime = 2.6;
 			}
 		}
 		if (difficultyUp.contains(sf::Mouse::getPosition(window)) == true)
 		{
-			if (clockTime == 6)
+			if (OptionsClockTime == 6)
 			{
-				clockTime = 5;
-				minClockTime = 2.6;
+				OptionsClockTime = 5;
+				optionsMinClockTime = 2.6;
 			}
-			if (clockTime == 5)
+			if (OptionsClockTime == 5)
 			{
-				clockTime = 4.5;
-				minClockTime = 2.2;
+				OptionsClockTime = 4.5;
+				optionsMinClockTime = 2.2;
 			}
 		}
 	}
@@ -99,10 +89,10 @@ int OptionsMenu::runOptionsMenu(sf::RenderWindow& window, int screensizeX, int s
 
 int OptionsMenu::getClockTime()
 {
-	return clockTime;
+	return OptionsClockTime;
 }
 
 int OptionsMenu::getMinClockTime()
 {
-	return minClockTime;
+	return optionsMinClockTime;
 }

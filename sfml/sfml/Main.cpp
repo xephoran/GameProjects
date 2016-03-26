@@ -22,10 +22,10 @@ int main()
 	OptionsMenu optionsMenu;
 	sf::RenderWindow window;
 	bool firsttime = true;
+	int gamestate = 0;
 
 	while (!hasquit)
 	{
-		int gamestate = 0;
 
 		while (gamestate == 0)
 		{
@@ -38,7 +38,7 @@ int main()
 			if (firsttime)
 			{
 				firsttime = false;
-				window.create(sf::VideoMode(1280, 720), "My window", sf::Style::Fullscreen);
+				window.create(sf::VideoMode(1280, 720), "My window", sf::Style::Resize);
 			}
 			std::cout << "Displaying Main Menu \n";
 			gamestate = mainMenu.UseMenu();

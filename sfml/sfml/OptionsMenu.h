@@ -8,7 +8,7 @@ public:
 	int getClockTime();
 	int getMinClockTime();
 private:
-	int clockTime;
-	int minClockTime;
+	int OptionsClockTime;
+	int optionsMinClockTime;
 };
 
