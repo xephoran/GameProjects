@@ -5,7 +5,7 @@ class GameLoop
 {
 public:
 	GameLoop();
-	int RunGame(int screensize);
+	int RunGame(sf::RenderWindow& window, int screensizeX, int screenSizeY, int clockTime, int minClockTime);
 private:
 	sf::RenderWindow window;
 };

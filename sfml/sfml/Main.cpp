@@ -5,6 +5,8 @@
 #include "RenderEngine.h"
 #include "MainMenu.h"
 #include "GameLoop.h"
+#include "OptionsMenu.h"
+#include <SFML/Graphics.hpp>
 
 int main()
 {
@@ -14,7 +16,12 @@ int main()
 	GameLoop gameLoop;
 	bool hasquit = false;
 	int screenheight = 0;
-	int screenwidth;
+	int screenwidth = 0;
+	int clockTime = 6;
+	int minClockTime = 2.9;
+	OptionsMenu optionsMenu;
+	sf::RenderWindow window;
+	bool firsttime = true;
 
 	while (!hasquit)
 	{
@@ -28,6 +35,11 @@ int main()
 
 		while (gamestate == 1)
 		{
+			if (firsttime)
+			{
+				firsttime = false;
+				window.create(sf::VideoMode(1280, 720), "My window", sf::Style::Fullscreen);
+			}
 			std::cout << "Displaying Main Menu \n";
 			gamestate = mainMenu.UseMenu();
 		}
@@ -35,12 +47,15 @@ int main()
 		while (gamestate == 2)
 		{
 			//needs to go to options menu eventually
+			gamestate = optionsMenu.runOptionsMenu(window, screenwidth, screenheight, clockTime, minClockTime);
+			clockTime = optionsMenu.getClockTime();
+			minClockTime = optionsMenu.getMinClockTime();
 		}
 
 		while (gamestate == 3)
 		{
 			std::cout << "gamestate 3";
-			gamestate = gameLoop.RunGame(screenheight);
+			gamestate = gameLoop.RunGame(window, 0, 0, clockTime, minClockTime);
 			//main game function goes here
 		}
 
